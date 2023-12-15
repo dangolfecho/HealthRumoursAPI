@@ -1,0 +1,8 @@
+from django.db import models
+
+# Create your models here.
+
+class sampleModel(models.Model):
+    selectedContent = models.CharField(max_length=100)
+    userFeedback = models.CharField(max_length=100)
+    result = models.CharField(max_length=20, default="Unverified")
