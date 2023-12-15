@@ -14,9 +14,13 @@ def insertUser(request):
             confidence_value = receivedData.get('confidence')
             imageURL_value = receivedData.get('imageURL')
             sourceURL_value = receivedData.get('sourceURL')
-            proofURL = receivedData.get('proofURL')
+            proofURL_value = receivedData.get('proofURL')
             userFeedback_value = receivedData.get('userFeedback', '')
             newEntry = userSelected(selectedContent=selectedContent_value,
+                    confidence=confidence_value,
+                    imageURL=imageURL_value,
+                    sourceURL=sourceURL_value,
+                    proofURL=proofURL_value,
                     userFeedback=userFeedback_value);
             newEntry.save()
             return JsonResponse({'message': 'Post stored successfully!'})
