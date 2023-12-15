@@ -29,6 +29,7 @@ def insertUser(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+@csrf_exempt
 def insertNews(request):
     try:
         if request.method == 'POST':
@@ -46,6 +47,7 @@ def insertNews(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+@csrf_exempt
 def insertSocial(request):
     try:
         if request.method == 'POST':
