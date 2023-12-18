@@ -3,9 +3,13 @@ from django.http import JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 import json
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 # Create your views here.
-@csrf_exempt
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def insertUser(request):
     try:
         if request.method == 'POST':
@@ -29,7 +33,8 @@ def insertUser(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-@csrf_exempt
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def insertNews(request):
     try:
         if request.method == 'POST':
@@ -47,7 +52,8 @@ def insertNews(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-@csrf_exempt
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def insertSocial(request):
     try:
         if request.method == 'POST':
@@ -65,11 +71,13 @@ def insertSocial(request):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getData(request):
     try:
         if request.method == 'GET':
             selectedContent_value = request.GET.get('selectedContent', '');
             row = userSelected.objects.get(selectedContent=selectedContent_value)
-            return JsonResponse({'result': row.status})
+            return Response({'result': row.status})
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        return Response({'error': str(e)}, status=500)
