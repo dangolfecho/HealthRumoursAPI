@@ -10,7 +10,7 @@ class newsArticles(models.Model):
     status = models.CharField(max_length=20, default="Unverified")
 
 class socialMediaPosts(models.Model):
-    sourceURL = models.CharField(max_length=100)
+    sourceURL = models.CharField(max_length=100, primary_key=True)
     articleContent = models.CharField(max_length=10000)
     imageURL = models.CharField(max_length=100, null=True)
     platformName = models.CharField(max_length=20)
