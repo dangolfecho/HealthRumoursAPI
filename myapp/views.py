@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate
+from django.db import IntegrityError
 
 # Create your views here.
 @api_view(['POST'])
@@ -73,8 +74,8 @@ def insertSocial(request):
                                     platformName=platformName_value);
             newEntry.save()
             return Response({'message': 'Post stored successfully!'})
-    except Exception as e:
-        return Response({'error': str(e)}, status=500)
+    except IntegrityError as e:
+        return Response({'message': 'Post already exists'})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
