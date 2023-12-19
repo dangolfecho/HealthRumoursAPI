@@ -140,3 +140,12 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication'
     ],
 }
+
+SECRET_KEY = 'VHJ1dGggc2hhbGwgcHJldmFpbCE='
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'SIGNING_KEY': SECRET_KEY,
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+}
